@@ -2,6 +2,7 @@
 #include "Model/RubiksCube1dArray.cpp"
 #include "Solver/BFSSolver.h"
 #include "Solver/DFSSolver.h"
+#include "Solver/IDDFSSolver.h"
 
 using namespace std;
 
@@ -129,6 +130,32 @@ int main()
    cout<<"DFS Solved"<<"\n";
    cout<<"\n";
    dfsSolver.rubiksCube.print();
+
+
+
+// IDDFS Solver -----------------------------------------------------------------------------------------------------
+   cout<<" -------------- IDDFS Solver -------- "<<"\n";
+   RubiksCube1dArray cubeIDDFS;
+   cubeIDDFS.print();
+
+   vector<RubiksCube::MOVE> shuffle_movesIDDFS = cubeIDDFS.randomShuffleCube(5);
+   for(auto move: shuffle_movesIDDFS)
+   {
+      cout<<cubeIDDFS.getMove(move)<<" ";
+   }
+   cout<<"\n";
+   cubeDFS.print();
+
+   IDDFSSolver<RubiksCube1dArray, Hash1d> iddfsSolver(cubeIDDFS);
+   vector<RubiksCube::MOVE> solve_movesIDDFS = iddfsSolver.solve();
+
+   for(auto move: solve_movesIDDFS)
+   {
+      cout<<cubeIDDFS.getMove(move)<<" ";
+   }
+   cout<<"IDDFS Solved"<<"\n";
+   cout<<"\n";
+   iddfsSolver.rubiksCube.print();
    
    return 0;
 }
