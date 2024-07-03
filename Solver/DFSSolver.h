@@ -4,7 +4,7 @@
 #ifndef RUBIKS_CUBE_SOLVER_DFSSOLVER_H
 #define RUBIKS_CUBE_SOLVER_DFSSOLVER_H
 
-template<typename Y, typename H>
+template<typename T, typename H>
 class DFSSolver
 {
 private:
@@ -21,7 +21,7 @@ private:
         {
             return false;
         }
-        for(Int i=0;i<18;i++)
+        for(int i=0;i<18;i++)
         {
             rubiksCube.move(RubiksCube::MOVE(i));
             moves.push_back(RubiksCube::MOVE(i));
@@ -30,7 +30,7 @@ private:
                 return true;
             }
             moves.pop_back();
-            rubiksCube.invert(RubiksCube::MOVBE(i));
+            rubiksCube.invert(RubiksCube::MOVE(i));
         }
         return false;
     }
